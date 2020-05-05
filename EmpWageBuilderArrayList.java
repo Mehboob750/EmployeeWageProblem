@@ -1,24 +1,22 @@
-public class EmpWageBuilderArray {
+import java.util.*;
+public class EmpWageBuilderArrayList {
 
   public static final int IS_FULL_TIME = 1;
   public static final int IS_PART_TIME = 2;
 
 	private int numOfCompany = 0;
-	private CompanyEmpWage[] companyEmpWageArray;
-
-	public EmpWageBuilderArray() {
-		companyEmpWageArray = new CompanyEmpWage[5];
-      }
+	private ArrayList<CompanyEmpWage> companyEmpWageArrayList = new ArrayList<CompanyEmpWage>();
 
 	private void addCompanyEmpWage(String company,int empRatePerHour,int numOfWorkingDays,int maxHoursPerMonth) {
-		companyEmpWageArray[numOfCompany] = new CompanyEmpWage(company,empRatePerHour,numOfWorkingDays,maxHoursPerMonth);
+		CompanyEmpWage companyEmpWageData = new CompanyEmpWage(company,empRatePerHour,numOfWorkingDays,maxHoursPerMonth);
+		companyEmpWageArrayList.add(companyEmpWageData);
 		numOfCompany++;
 	}
 
 	private void computeEmpWage() {
-		for(int count=0;count<numOfCompany;count++) {
-			int totalEmpWage=this.computeEmpWage(companyEmpWageArray[count]);
-			System.out.println(" Total Emp Wage For Company " +companyEmpWageArray[count].company + " is: " + totalEmpWage);
+		for(int companyCount=0;companyCount<numOfCompany;companyCount++) {
+			int totalEmpWage=this.computeEmpWage(companyEmpWageArrayList.get(companyCount));
+			System.out.println(" Total Emp Wage For Company " +companyEmpWageArrayList.get(companyCount).company + " is: " + totalEmpWage);
 		}
 	}
 
@@ -46,12 +44,12 @@ public class EmpWageBuilderArray {
 	}
 
 	public static void main(String[] args) {
-		EmpWageBuilderArray empWageArray = new EmpWageBuilderArray();
-		empWageArray.addCompanyEmpWage("D-Mart",20,2,10);
-		empWageArray.addCompanyEmpWage("Big Basket", 40, 4, 30);
-		empWageArray.addCompanyEmpWage("Reliance", 30, 2, 20);
+		EmpWageBuilderArrayList empWageArrayList = new EmpWageBuilderArrayList();
+		empWageArrayList.addCompanyEmpWage("D-Mart",20,2,10);
+		empWageArrayList.addCompanyEmpWage("Big Basket", 40, 4, 30);
+		empWageArrayList.addCompanyEmpWage("Reliance", 30, 2, 20);
 
-		empWageArray.computeEmpWage();
+		empWageArrayList.computeEmpWage();
 	}
 
 	private class CompanyEmpWage {
