@@ -6,7 +6,7 @@ public class EmpWage {
   public static final int NUMBER_OF_WORKING_DAYS=2;
   public static final int MAX_HOURS_IN_MONTH=10;
 
-   public static void main(String args[]) {
+   public static int calculateEmpWage() {
 		int empWage = 0, totalEmpWage=0, totalWorkingDays=0, totalEmpHrs=0;
 
 		while (totalEmpHrs <= MAX_HOURS_IN_MONTH && totalWorkingDays < NUMBER_OF_WORKING_DAYS ) {
@@ -31,7 +31,14 @@ public class EmpWage {
 	  			System.out.println("Emp Wage: "+empWage);
 			}
 	  	System.out.println("Total Emp Wage: "+totalEmpWage);
+		return totalEmpWage;
 	}
+
+	public static void main(String[] args) {
+		calculateEmpWage();
+	}
+
+
 }
 
 
