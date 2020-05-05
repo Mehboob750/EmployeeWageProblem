@@ -38,7 +38,8 @@ public class EmpWageBuilderArrayList {
 
 					}
 				totalEmpHrs += empHrs;
-				System.out.println("Day#: "+ totalWorkingDays+ "Emp Hours: "+empHrs);
+				int dailyWage=companyEmpWage.empRatePerHour*empHrs;
+				System.out.println("Day#: "+ totalWorkingDays+ "Emp Hours: "+empHrs+" :Daily Wage:"+dailyWage);
 			}
 		return totalEmpHrs * companyEmpWage.empRatePerHour;
 	}
@@ -67,8 +68,3 @@ public class EmpWageBuilderArrayList {
 	}
 
 }
-
-
-
-
-
