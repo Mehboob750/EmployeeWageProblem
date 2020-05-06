@@ -6,6 +6,7 @@ public class EmpWageBuilderArrayList {
 
 	private int numOfCompany = 0;
 	private ArrayList<CompanyEmpWage> companyEmpWageArrayList = new ArrayList<CompanyEmpWage>();
+	public Dictionary<String,Integer> totalEmpWageStore = new Hashtable<String,Integer>();
 
 	private void addCompanyEmpWage(String company,int empRatePerHour,int numOfWorkingDays,int maxHoursPerMonth) {
 		CompanyEmpWage companyEmpWageData = new CompanyEmpWage(company,empRatePerHour,numOfWorkingDays,maxHoursPerMonth);
@@ -17,9 +18,21 @@ public class EmpWageBuilderArrayList {
 		for(int companyCount=0;companyCount<numOfCompany;companyCount++) {
 			int totalEmpWage=this.computeEmpWage(companyEmpWageArrayList.get(companyCount));
 			System.out.println(" Total Emp Wage For Company " +companyEmpWageArrayList.get(companyCount).company + " is: " + totalEmpWage);
+			totalEmpWageStore.put(companyEmpWageArrayList.get(companyCount).company,totalEmpWage);
 		}
 	}
 
+	public void getTotalEmpWage() {
+		int input=1;
+		while(input !=0 ) {
+			Scanner sc= new Scanner(System.in);
+			System.out.println("Enter the company name :");
+			String companyName=sc.next();
+			System.out.println("The total employee wage of "+companyName+" is :"+totalEmpWageStore.get(companyName));
+			System.out.println("If you want to check for another compnay then Enter 1");
+			input = sc.nextInt();
+		}
+	}
 	public int computeEmpWage(CompanyEmpWage  companyEmpWage) {
 		int empHrs=0, totalWorkingDays=0, totalEmpHrs=0;
 
@@ -47,10 +60,11 @@ public class EmpWageBuilderArrayList {
 	public static void main(String[] args) {
 		EmpWageBuilderArrayList empWageArrayList = new EmpWageBuilderArrayList();
 		empWageArrayList.addCompanyEmpWage("D-Mart",20,2,10);
-		empWageArrayList.addCompanyEmpWage("Big Basket", 40, 4, 30);
+		empWageArrayList.addCompanyEmpWage("BigBasket", 40, 4, 30);
 		empWageArrayList.addCompanyEmpWage("Reliance", 30, 2, 20);
 
 		empWageArrayList.computeEmpWage();
+		empWageArrayList.getTotalEmpWage();
 	}
 
 	private class CompanyEmpWage {
@@ -66,5 +80,4 @@ public class EmpWageBuilderArrayList {
 				this.maxHoursPerMonth=maxHoursPerMonth;
 		}
 	}
-
 }
